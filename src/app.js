@@ -36,8 +36,7 @@ const getPosts = async() => {
 app.get("/",(req,resp)=>{
     resp.send("Hello World")
 })
-setTimeout(()=>{getPosts()}, 7200000)
-getPosts()
+setTimeout(()=>{getPosts()}, 3600000)
 app.get("/sumarize",(req,res)=>{
     data = {}
     fs.readFile('data.json',(err,fd)=>{
