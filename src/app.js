@@ -11,6 +11,7 @@ app.all("/*", function (req, res, next) {
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   next();
 });
+var a = "0"
 const getPosts = async () => {
   const Topics = [
     "top",
@@ -40,13 +41,18 @@ const getPosts = async () => {
             source: newsArray[i].source_id,
             category: newsArray[i].category[0],
           });
+          try{
           await newsData.save();
+          }catch{
+          a = a+"1"
+          console.log(a)
+          }
         }
       })
       .catch((e) => {
         console.log(e);
       });
-  });
+    });
 };
 var count = "0"
 const getCount=()=>{
@@ -54,12 +60,12 @@ const getCount=()=>{
 } 
 app.get("/", (req, resp) => {
   // resp.send("Hello World");
-  resp.send(count);
+  resp.send(count+"This is data"+a);
 });
 setInterval(() => {
-  // getPosts();
+  getPosts();
   getCount();
-}, 60000);
+}, 3600000);
 app.get("/sumarize", (req, res) => {
   data = {};
   fs.readFile("data.json", (err, fd) => {
