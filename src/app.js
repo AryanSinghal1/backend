@@ -28,7 +28,7 @@ const getPosts = async () => {
   Topics.map((e) => {
     axios
       .get(
-        `https://newsdata.io/api/1/news?apikey=pub_92827e3c0b4e56d836a972b6004297158542&country=in&language=en&category=${e}`
+        `https://newsdata.io/api/1/news?apikey=pub_930227b420d2d7e030700ff57726ca453f8a&country=in&language=en&category=${e}`
       )
       .then(async (res) => {
         const newsArray = res.data.results;
@@ -68,7 +68,7 @@ app.get("/", (req, resp) => {
 setInterval(() => {
     getPosts();
     getCount();
-  }, 600000);
+  }, 30000);
 //   cron.schedule('*/1 * * * *', () => {
 //     console.log('running a task every two minutes');
 //     getPosts();
