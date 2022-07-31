@@ -5,6 +5,7 @@ require("./conn/conn");
 const newsSchema = require("./model/model");
 const app = express();
 const port = process.env.PORT || 8000;
+var cron = require('node-cron');
 // import fetch from 'node-fetch'
 app.all("/*", function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -62,10 +63,15 @@ app.get("/", (req, resp) => {
   // resp.send("Hello World");
   resp.send(count+"This is data"+a);
 });
-setInterval(() => {
-  getPosts();
-  getCount();
-}, 600000);
+// setInterval(() => {
+  //   getPosts();
+  //   getCount();
+  // }, 600000);
+  cron.schedule('*/2 * * * *', () => {
+    console.log('running a task every two minutes');
+    getPosts();
+    getCount();
+});
 app.get("/sumarize", (req, res) => {
   data = {};
   fs.readFile("data.json", (err, fd) => {
