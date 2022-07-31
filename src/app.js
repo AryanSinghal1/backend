@@ -48,12 +48,18 @@ const getPosts = async () => {
       });
   });
 };
+var count = "0"
+const getCount=()=>{
+  count=count+"1"
+} 
 app.get("/", (req, resp) => {
-  resp.send("Hello World");
+  // resp.send("Hello World");
+  resp.send(count);
 });
 setInterval(() => {
-  getPosts();
-}, 3600000);
+  // getPosts();
+  getCount();
+}, 60000);
 app.get("/sumarize", (req, res) => {
   data = {};
   fs.readFile("data.json", (err, fd) => {
