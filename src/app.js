@@ -68,7 +68,7 @@ app.get("/", (req, resp) => {
 setInterval(() => {
     getPosts();
     getCount();
-  }, 30000);
+  }, 20000);
 //   cron.schedule('*/1 * * * *', () => {
 //     console.log('running a task every two minutes');
 //     getPosts();
