@@ -44,10 +44,12 @@ const getPosts = async () => {
           });
           try{
           await newsData.save();
-          }catch{
-          a = a+"1"
-          console.log(a)
+          }catch{(e)=>{
+            console.log(e)
+            // a = a+"1"
+            // console.log(a)
           }
+        }
         }
       })
       .catch((e) => {
@@ -63,15 +65,15 @@ app.get("/", (req, resp) => {
   // resp.send("Hello World");
   resp.send(count+"This is data"+a);
 });
-// setInterval(() => {
-  //   getPosts();
-  //   getCount();
-  // }, 600000);
-  cron.schedule('*/59 * * * *', () => {
-    console.log('running a task every two minutes');
+setInterval(() => {
     getPosts();
     getCount();
-});
+  }, 600000);
+//   cron.schedule('*/1 * * * *', () => {
+//     console.log('running a task every two minutes');
+//     getPosts();
+//     getCount();
+// });
 app.get("/sumarize", (req, res) => {
   data = {};
   fs.readFile("data.json", (err, fd) => {
