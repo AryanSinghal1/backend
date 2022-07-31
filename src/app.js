@@ -65,7 +65,7 @@ app.get("/", (req, resp) => {
 setInterval(() => {
   getPosts();
   getCount();
-}, 3600000);
+}, 600000);
 app.get("/sumarize", (req, res) => {
   data = {};
   fs.readFile("data.json", (err, fd) => {
